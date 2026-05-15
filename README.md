@@ -86,8 +86,8 @@ Set these in your operating system or deployment platform:
 
 ```powershell
 # PowerShell (Windows)
-[Environment]::SetEnvironmentVariable("GITHUB_ENTERPRISE", "NERVESOLUTIONS", "User")
-[Environment]::SetEnvironmentVariable("GITHUB_API_TOKEN", "your_pat_token_here", "User")
+[Environment]::SetEnvironmentVariable("NS_GITHUB_ENTERPRISE", "NERVESOLUTIONS", "User")
+[Environment]::SetEnvironmentVariable("NS_GITHUB_API_TOKEN", "your_pat_token_here", "User")
 ```
 
 ```bash
