@@ -55,13 +55,14 @@ namespace CopilitDashboard.NET.Controllers
         public async Task<IActionResult> GetSeatsAsync()
         {
             var GitHubToken = Environment.GetEnvironmentVariable("NS_GITHUB_API_TOKEN");
+            var GitHubEnterprise = Environment.GetEnvironmentVariable("NS_GITHUB_ENTERPRISE");
 
             using var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GitHubToken);
             httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("PostmanRuntime/7.51.0");
 
-            var seatsUrl = "https://api.github.com/enterprises/NERVESOLUTIONS/copilot/billing";
+            var seatsUrl = $"https://api.github.com/enterprises/{GitHubEnterprise}/copilot/billing";
             var response = await httpClient.GetAsync(seatsUrl);
             if (!response.IsSuccessStatusCode)
                 return StatusCode((int)response.StatusCode, "Failed to fetch seats data.");
@@ -84,7 +85,7 @@ namespace CopilitDashboard.NET.Controllers
             if (dte_LastFetchedDate.Date.AddDays(1) != DateTime.Now.Date)
             {
                 var GitHubEnterprise = Environment.GetEnvironmentVariable("NS_GITHUB_ENTERPRISE");
-                var GitHubToken = Environment.GetEnvironmentVariable("NSGITHUB_API_TOKEN");
+                var GitHubToken = Environment.GetEnvironmentVariable("NS_GITHUB_API_TOKEN");
 
                 string MetricsUrl = $"https://api.github.com/enterprises/{GitHubEnterprise}/copilot/metrics/reports/users-28-day/latest";
 
