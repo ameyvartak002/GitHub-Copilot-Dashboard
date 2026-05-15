@@ -1,0 +1,6 @@
+@CopilitDashboard.NET_HostAddress = http://localhost:5073
+
+GET {{CopilitDashboard.NET_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
